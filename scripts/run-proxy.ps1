@@ -1,12 +1,22 @@
 param(
-  [string]$ConfigPath = "c:\Users\Jacob\Desktop\Projects\claude\config.yaml"
+  [string]$ConfigPath = ""
 )
+
+$ProjectRoot = Split-Path $PSScriptRoot -Parent
+if ([string]::IsNullOrWhiteSpace($ConfigPath)) {
+  $ConfigPath = Join-Path $ProjectRoot "config.yaml"
+}
 
 if (-Not (Test-Path $ConfigPath)) {
   throw "Config not found: $ConfigPath"
 }
 
-$envPath = "c:\Users\Jacob\Desktop\Projects\claude\.env"
+$PythonExe = Join-Path $ProjectRoot ".venv\Scripts\python.exe"
+if (-Not (Test-Path $PythonExe)) {
+  throw "Python venv not found. Create it in the project root: $PythonExe"
+}
+
+$envPath = Join-Path $ProjectRoot ".env"
 if (Test-Path $envPath) {
   Get-Content $envPath | ForEach-Object {
     $line = $_.Trim()
@@ -33,5 +43,6 @@ if (Test-Path $envPath) {
 $env:PYTHONIOENCODING = "utf-8"
 
 Write-Host "Starting LiteLLM proxy with config: $ConfigPath"
-litellm --config $ConfigPath
+$runner = Join-Path $PSScriptRoot "run_litellm.py"
+& $PythonExe $runner --config $ConfigPath
 
