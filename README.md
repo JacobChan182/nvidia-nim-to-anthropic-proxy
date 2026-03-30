@@ -21,7 +21,7 @@ It uses **LiteLLM Proxy** as the protocol translator/gateway.
 1. Create and activate a virtual environment
 
 ```powershell
-cd "c:\Users\Jacob\Desktop\Projects\claude"
+cd "c:\Users\PROJECT_ROOT"
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
@@ -45,7 +45,7 @@ In the same terminal (with the venv activated):
 
 ```powershell
 $env:PYTHONIOENCODING="utf-8"
-litellm --config "c:\Users\Jacob\Desktop\Projects\claude\config.yaml"
+litellm --config "c:\Users\PROJECT_ROOT\config.yaml"
 ```
 
 The proxy listens on `http://127.0.0.1:4000` by default.
