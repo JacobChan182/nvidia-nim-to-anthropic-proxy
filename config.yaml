@@ -1,0 +1,15 @@
+model_list:
+  - model_name: kimi-k2.5-nvidia
+    litellm_params:
+      # Routes Anthropic-compatible requests (/v1/messages) to NVIDIA NIM.
+      # Backend model id: moonshotai/kimi-k2.5 on build.nvidia.com.
+      model: nvidia_nim/moonshotai/kimi-k2.5
+      api_key: os.environ/NVIDIA_NIM_API_KEY
+
+litellm_settings:
+  # The Claude Code gateway may send params that are not accepted by all providers.
+  drop_params: True
+
+general_settings:
+  # Static local proxy key. Set Claude Code's ANTHROPIC_AUTH_TOKEN to this value.
+  master_key: sk-llm-proxy-local
