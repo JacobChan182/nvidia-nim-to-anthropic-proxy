@@ -62,14 +62,19 @@ In PowerShell:
 
 ```powershell
 $env:ANTHROPIC_BASE_URL="http://127.0.0.1:4000"
-$env:ANTHROPIC_AUTH_TOKEN="sk-llm-proxy-local"
+$env:ANTHROPIC_API_KEY="sk-llm-proxy-local"
+$env:ANTHROPIC_AUTH_TOKEN=$env:ANTHROPIC_API_KEY
 ```
+
+Claude Code must see `ANTHROPIC_BASE_URL` and `ANTHROPIC_API_KEY` in the same PowerShell session you run `claude` from. If they’re not set, it will default to the first‑party login flow and may show “not logged in”.
 
 Then start Claude Code with the model alias:
 
 ```powershell
 claude --model kimi-k2.5-nvidia
 ```
+
+To avoid re-typing, put these `$env:` assignments in your PowerShell profile (`notepad $PROFILE`) or set them as user environment variables.
 
 ## Notes / limitations
 

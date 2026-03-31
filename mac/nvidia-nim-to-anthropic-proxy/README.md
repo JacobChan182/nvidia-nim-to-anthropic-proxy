@@ -40,10 +40,14 @@ Models exposed:
 
 ## Configure Claude Code (in the same terminal session)
 
+Claude Code uses these environment variables to decide where to send API requests. If you don’t set them, it will use the first‑party provider flow and may show “not logged in”.
+
 ```bash
 export ANTHROPIC_BASE_URL="http://127.0.0.1:4010"
 export ANTHROPIC_API_KEY="sk-llm-proxy-local"
 export ANTHROPIC_MODEL="product-architect"  # optional
 claude -p "hello"
 ```
+
+To avoid re-typing, add those `export` lines to your shell profile (for example `~/.zshrc` or `~/.bashrc`).
 
