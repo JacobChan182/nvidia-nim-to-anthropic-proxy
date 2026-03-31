@@ -1,5 +1,22 @@
+.DS_Store
+Thumbs.db
+
+# Secrets
 .env
+**/.env
+
+# Virtualenvs
 .venv/
+**/.venv/
+
+# Python cache
 __pycache__/
 *.pyc
+
+# Node
+node_modules/
 **/node_modules/
+
+# Nested git repos (avoid submodule-by-accident)
+**/.git/
+
