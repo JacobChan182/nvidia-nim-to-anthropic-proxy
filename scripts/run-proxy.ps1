@@ -1,5 +1,6 @@
 param(
-  [string]$ConfigPath = ""
+  [string]$ConfigPath = "",
+  [int]$Port = 0
 )
 
 $ProjectRoot = Split-Path $PSScriptRoot -Parent
@@ -44,5 +45,9 @@ $env:PYTHONIOENCODING = "utf-8"
 
 Write-Host "Starting LiteLLM proxy with config: $ConfigPath"
 $runner = Join-Path $PSScriptRoot "run_litellm.py"
-& $PythonExe $runner --config $ConfigPath
+$argsList = @("--config", $ConfigPath)
+if ($Port -gt 0) {
+  $argsList += @("--port", "$Port")
+}
+& $PythonExe $runner @argsList
 
