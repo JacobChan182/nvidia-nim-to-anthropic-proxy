@@ -1,31 +1,42 @@
 model_list:
   - model_name: product-architect
     litellm_params:
-      model: nvidia_nim/deepseek-ai/deepseek-v3.2
-      api_key: os.environ/NVIDIA_NIM_API_KEY_PRODUCT_ARCHITECT
+      model: openrouter/qwen/qwen3.6-plus-preview:free
+      api_key: os.environ/OPENROUTER_API_KEY
 
   - model_name: backend
     litellm_params:
-      model: nvidia_nim/mistralai/devstral-2-123b-instruct-2512
-      api_key: os.environ/NVIDIA_NIM_API_KEY_BACKEND
+      model: openrouter/qwen/qwen3-coder:free
+      api_key: os.environ/OPENROUTER_API_KEY
 
   - model_name: ios
     litellm_params:
-      model: nvidia_nim/z-ai/glm4.7
-      api_key: os.environ/NVIDIA_NIM_API_KEY_IOS
+      model: openrouter/qwen/qwen3-coder:free
+      api_key: os.environ/OPENROUTER_API_KEY
 
   - model_name: android
     litellm_params:
-      model: nvidia_nim/z-ai/glm4.7
-      api_key: os.environ/NVIDIA_NIM_API_KEY_ANDROID
+      model: openrouter/qwen/qwen3-coder:free
+      api_key: os.environ/OPENROUTER_API_KEY
 
   - model_name: qa
     litellm_params:
-      model: nvidia_nim/deepseek-ai/deepseek-v3.1-terminus
-      api_key: os.environ/NVIDIA_NIM_API_KEY_QA
+      model: openrouter/nvidia/nemotron-3-super-120b-a12b:free
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  - model_name: fallback
+    litellm_params:
+      model: openrouter/openrouter/free
+      api_key: os.environ/OPENROUTER_API_KEY
+
+  - model_name: "claude-*"
+    litellm_params:
+      model: openrouter/openrouter/free
+      api_key: os.environ/OPENROUTER_API_KEY
 
 litellm_settings:
   drop_params: True
+  default_fallbacks: ["fallback"]
 
 general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
